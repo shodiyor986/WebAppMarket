@@ -713,12 +713,12 @@
                 },
                 {
                     id: 4,
-                    name: 'Chat App',
+                    name: 'gigachat',
                     category: 'social',
                     description: 'Tezkor messenger va guruhli chatlar.',
                     review: '💬 Do\'stlar bilan muloqot uchun ajoyib platforma.',
                     botUsername: 'chatappbot',
-                    icon: 'fa-comments'
+                    icon: '@gigachat_bot'
                 },
                 {
                     id: 5,
