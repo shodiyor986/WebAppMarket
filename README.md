@@ -15,6 +15,7 @@
     <base href="/">
     
     <style>
+        /* ============= STILLAR ============= */
         * {
             margin: 0;
             padding: 0;
@@ -622,7 +623,95 @@
                 document.body.classList.add('dark');
             }
 
-            // ============= TARJIMALAR =============
+            // ===========================================
+            // 📱 APPLAR RO'YXATI - FAQAT SHU YERDA O'ZGARTIRILADI
+            // ===========================================
+            // Yangi app qo'shish uchun:
+            // 1. Quyidagi ro'yxatga {} ichida yangi app ma'lumotlarini yozing
+            // 2. Vergul (,) qo'yishni unutmang
+            // 3. ID raqamni avvalgisidan bitta katta qiling
+            // ===========================================
+            
+            const apps = [
+                {
+                    id: 1,
+                    name: 'Mini Game Bot',
+                    category: 'game',
+                    description: 'Qiziqarli mini o\'yinlar to\'plami. Puzzle, arcade va strategiya o\'yinlari.',
+                    review: '🎮 Ajoyib o\'yinlar! Eng zo\'r pazzillar to\'plami.',
+                    botUsername: 'mygamebot'
+                },
+                {
+                    id: 2,
+                    name: 'Spotify Downloader',
+                    category: 'tool',
+                    description: 'Musiqa yuklash va tinglash uchun bot. Millionlab qo\'shiqlar.',
+                    review: '🎵 Ajoyib musiqa boti! Sifatli ovoz va yuklash imkoniyati.',
+                    botUsername: 'SpotifyMusicDownloaderBot'
+                },
+                {
+                    id: 3,
+                    name: 'Wallet',
+                    category: 'tool',
+                    description: 'Kriptovalyuta hamyoni va kurslarini kuzatish.',
+                    review: '💰 Ishonchli va qulay kripto hamyon.',
+                    botUsername: 'wallet'
+                },
+                {
+                    id: 4,
+                    name: 'gigachat',
+                    category: 'social',
+                    description: 'Tezkor messenger va guruhli chatlar.',
+                    review: '💬 Do\'stlar bilan muloqot uchun ajoyib platforma.',
+                    botUsername: '@gigachat_bot'
+                },
+                {
+                    id: 5,
+                    name: 'TestGO',
+                    category: 'education',
+                    description: 'Matematik testlar va mantiqiy masalalar.',
+                    review: '🧮 Matematikani o\'rganish uchun zo\'r bot!',
+                    botUsername: 'Quiz00_01_bot'
+                },
+                {
+                    id: 6,
+                    name: 'Tingla',
+                    category: 'tool',
+                    description: 'Audio kitoblar va podkastlar.',
+                    review: '🎧 Zo\'r audio kitoblar to\'plami!',
+                    botUsername: 'TinglaBot'
+                },
+                {
+                    id: 7,
+                    name: 'sportfet',
+                    category: 'tool',
+                    description: 'sport fetnis.',
+                    review: 'sport fetnis mashxulotlari.',
+                    botUsername: '@SportFet_bot'
+                }
+
+                // ===========================================
+                // 🔷 YANGI APP QO'SHISH UCHUN NAMUNA:
+                // ===========================================
+                // Kopiya qiling va quyidagi ma'lumotlarni o'zgartiring:
+                /*
+                {
+                    id: 7,                          // Yangi ID (oldingi ID dan katta)
+                    name: 'Yangi App Nomi',         // App nomi
+                    category: 'tool',                // Kategoriya: 'game', 'tool', 'social', 'education'
+                    description: 'Qisqacha tavsif...', // Tavsif
+                    review: '⭐ Foydalanuvchi sharhi...', // Sharh
+                    botUsername: 'bot_username'      // Bot username (@siz)
+                },
+                */
+                // ===========================================
+                // Yuqoridagi namunani kopiya qilib, yangi app qo'shing
+                // ===========================================
+            ];
+
+            // ===========================================
+            // TARJIMALAR (O'ZGARTIRMANG)
+            // ===========================================
             const translations = {
                 uz: {
                     total_apps: 'Jami applar',
@@ -680,70 +769,82 @@
                 }
             };
 
-            let currentLang = 'uz';
-
-            // ============= APPLAR RO'YXATI =============
-            const apps = [
-                {
-                    id: 1,
-                    name: 'Mini Game Bot',
-                    category: 'game',
-                    description: 'Qiziqarli mini o\'yinlar to\'plami. Puzzle, arcade va strategiya o\'yinlari.',
-                    review: '🎮 Ajoyib o\'yinlar! Eng zo\'r pazzillar to\'plami.',
-                    botUsername: 'mygamebot',
-                    icon: 'fa-gamepad'
-                },
-                {
-                    id: 2,
-                    name: 'Spotify Downloader',
-                    category: 'tool',
-                    description: 'Musiqa yuklash va tinglash uchun bot. Millionlab qo\'shiqlar.',
-                    review: '🎵 Ajoyib musiqa boti! Sifatli ovoz va yuklash imkoniyati.',
-                    botUsername: 'SpotifyMusicDownloaderBot',
-                    icon: 'fa-spotify'
-                },
-                {
-                    id: 3,
-                    name: 'Wallet',
-                    category: 'tool',
-                    description: 'Kriptovalyuta hamyoni va kurslarini kuzatish.',
-                    review: '💰 Ishonchli va qulay kripto hamyon.',
-                    botUsername: 'wallet',
-                    icon: 'fa-wallet'
-                },
-                {
-                    id: 4,
-                    name: 'gigachat',
-                    category: 'social',
-                    description: 'Tezkor messenger va guruhli chatlar.',
-                    review: '💬 Do\'stlar bilan muloqot uchun ajoyib platforma.',
-                    botUsername: 'chatappbot',
-                    icon: '@gigachat_bot'
-                },
-                {
-                    id: 5,
-                    name: 'TestGO',
-                    category: 'education',
-                    description: 'Matematik testlar va mantiqiy masalalar.',
-                    review: '🧮 Matematikani o\'rganish uchun zo\'r bot!',
-                    botUsername: 'Quiz00_01_bot',
-                    icon: 'fa-calculator'
-                },
-                {
-                    id: 6,
-                    name: 'Tingla',
-                    category: 'tool',
-                    description: 'Audio kitoblar va podkastlar.',
-                    review: '🎧 Zo\'r audio kitoblar to\'plami!',
-                    botUsername: 'TinglaBot',
-                    icon: 'fa-headphones'
-                }
+            // ===========================================
+            // RANGLAR PALITRASI (O'ZGARTIRMANG)
+            // ===========================================
+            const colors = [
+                '#FF6B6B', '#4ECDC4', '#45B7D1', '#96CEB4', 
+                '#FFEAA7', '#DDA0DD', '#98D8C8', '#F7DC6F',
+                '#BB8FCE', '#82E0AA', '#F1948A', '#85C1E2',
+                '#F0B27A', '#A569BD', '#5DADE2', '#48C9B0'
             ];
 
+            // ===========================================
+            // ICON VA RANG TANLASH (O'ZGARTIRMANG)
+            // ===========================================
+            function getAppIconAndColor(appName, category) {
+                const name = appName.toLowerCase();
+                let icon = 'fa-robot';
+                let colorIndex = 0;
+                
+                const iconMap = [
+                    { keywords: ['game', 'oyin', 'o\'yin'], icon: 'fa-gamepad', color: 1 },
+                    { keywords: ['spotify', 'music', 'musiqa'], icon: 'fa-spotify', color: 2 },
+                    { keywords: ['wallet', 'hamyon', 'crypto'], icon: 'fa-wallet', color: 3 },
+                    { keywords: ['chat', 'message', 'social'], icon: 'fa-comments', color: 4 },
+                    { keywords: ['test', 'quiz', 'math'], icon: 'fa-calculator', color: 5 },
+                    { keywords: ['tingla', 'audio', 'podcast'], icon: 'fa-headphones', color: 6 },
+                    { keywords: ['video', 'movie', 'kino'], icon: 'fa-video', color: 7 },
+                    { keywords: ['photo', 'rasm', 'image'], icon: 'fa-camera', color: 8 },
+                    { keywords: ['book', 'kitob', 'library'], icon: 'fa-book', color: 9 },
+                    { keywords: ['news', 'yangilik', 'xabar'], icon: 'fa-newspaper', color: 10 },
+                    { keywords: ['weather', 'ob-havo', 'havo'], icon: 'fa-cloud-sun', color: 11 },
+                    { keywords: ['map', 'xarita', 'location'], icon: 'fa-map-location-dot', color: 12 },
+                    { keywords: ['translate', 'tarjima', 'til'], icon: 'fa-language', color: 13 }
+                ];
+                
+                for (let item of iconMap) {
+                    if (item.keywords.some(keyword => name.includes(keyword))) {
+                        icon = item.icon;
+                        colorIndex = item.color;
+                        break;
+                    }
+                }
+                
+                if (icon === 'fa-robot') {
+                    switch(category) {
+                        case 'game': icon = 'fa-dice'; colorIndex = 1; break;
+                        case 'tool': icon = 'fa-tools'; colorIndex = 2; break;
+                        case 'social': icon = 'fa-users'; colorIndex = 4; break;
+                        case 'education': icon = 'fa-graduation-cap'; colorIndex = 5; break;
+                    }
+                }
+                
+                const nameSum = name.split('').reduce((acc, char) => acc + char.charCodeAt(0), 0);
+                colorIndex = (colorIndex + nameSum) % colors.length;
+                
+                return { icon, color: colors[colorIndex] };
+            }
+
+            function adjustColor(hex, percent) {
+                let R = parseInt(hex.substring(1,3), 16);
+                let G = parseInt(hex.substring(3,5), 16);
+                let B = parseInt(hex.substring(5,7), 16);
+                
+                R = Math.min(255, Math.max(0, R + percent));
+                G = Math.min(255, Math.max(0, G + percent));
+                B = Math.min(255, Math.max(0, B + percent));
+                
+                return `#${((1 << 24) + (R << 16) + (G << 8) + B).toString(16).slice(1)}`;
+            }
+
+            // ===========================================
+            // TIL FUNKSIYASI (O'ZGARTIRMANG)
+            // ===========================================
+            let currentLang = 'uz';
             let favorites = JSON.parse(localStorage.getItem('favorites')) || [];
             let currentCategory = 'all';
 
-            // DOM elements
             const appsGrid = document.getElementById('appsGrid');
             const searchInput = document.getElementById('searchInput');
             const totalAppsEl = document.getElementById('totalApps');
@@ -757,94 +858,6 @@
             const langRu = document.getElementById('langRu');
             const langEn = document.getElementById('langEn');
 
-            // ============= RANGLAR PALITRASI =============
-            const colors = [
-                '#FF6B6B', // qizil
-                '#4ECDC4', // turkuaz
-                '#45B7D1', // och ko'k
-                '#96CEB4', // yashil
-                '#FFEAA7', // sariq
-                '#DDA0DD', // och siyoh
-                '#98D8C8', // yalpiz
-                '#F7DC6F', // oltin
-                '#BB8FCE', // siyohrang
-                '#82E0AA', // yashil
-                '#F1948A', // och qizil
-                '#85C1E2', // ko'k
-                '#F0B27A', // apelsin
-                '#A569BD', // binafsha
-                '#5DADE2', // havo rang
-                '#48C9B0'  // firuza
-            ];
-
-            // ============= APP NOMIGA QARAB ICON VA RANG TANLASH =============
-            function getAppIconAndColor(appName, category, defaultIcon) {
-                const name = appName.toLowerCase();
-                let icon = defaultIcon;
-                let colorIndex = 0;
-                
-                // App nomiga qarab icon tanlash
-                if (name.includes('game') || name.includes('oyin') || name.includes('o\'yin')) {
-                    icon = 'fa-gamepad';
-                    colorIndex = 1;
-                } else if (name.includes('spotify') || name.includes('music') || name.includes('musiqa')) {
-                    icon = 'fa-spotify';
-                    colorIndex = 2;
-                } else if (name.includes('wallet') || name.includes('hamyon') || name.includes('crypto')) {
-                    icon = 'fa-wallet';
-                    colorIndex = 3;
-                } else if (name.includes('chat') || name.includes('message') || name.includes('social')) {
-                    icon = 'fa-comments';
-                    colorIndex = 4;
-                } else if (name.includes('test') || name.includes('quiz') || name.includes('math')) {
-                    icon = 'fa-calculator';
-                    colorIndex = 5;
-                } else if (name.includes('tingla') || name.includes('audio') || name.includes('podcast')) {
-                    icon = 'fa-headphones';
-                    colorIndex = 6;
-                } else if (name.includes('video') || name.includes('movie') || name.includes('kino')) {
-                    icon = 'fa-video';
-                    colorIndex = 7;
-                } else if (name.includes('photo') || name.includes('rasm') || name.includes('image')) {
-                    icon = 'fa-camera';
-                    colorIndex = 8;
-                } else if (name.includes('book') || name.includes('kitob') || name.includes('library')) {
-                    icon = 'fa-book';
-                    colorIndex = 9;
-                } else if (name.includes('news') || name.includes('yangilik') || name.includes('xabar')) {
-                    icon = 'fa-newspaper';
-                    colorIndex = 10;
-                } else if (name.includes('weather') || name.includes('ob-havo') || name.includes('havo')) {
-                    icon = 'fa-cloud-sun';
-                    colorIndex = 11;
-                } else if (name.includes('map') || name.includes('xarita') || name.includes('location')) {
-                    icon = 'fa-map-location-dot';
-                    colorIndex = 12;
-                } else if (name.includes('translate') || name.includes('tarjima') || name.includes('til')) {
-                    icon = 'fa-language';
-                    colorIndex = 13;
-                } else {
-                    // Kategoriya bo'yicha default icon
-                    switch(category) {
-                        case 'game': icon = 'fa-dice'; colorIndex = 1; break;
-                        case 'tool': icon = 'fa-tools'; colorIndex = 2; break;
-                        case 'social': icon = 'fa-users'; colorIndex = 4; break;
-                        case 'education': icon = 'fa-graduation-cap'; colorIndex = 5; break;
-                        default: icon = 'fa-robot'; colorIndex = 0;
-                    }
-                }
-                
-                // App nomi bo'yicha rang indeksini hisoblash
-                const nameSum = name.split('').reduce((acc, char) => acc + char.charCodeAt(0), 0);
-                colorIndex = (colorIndex + nameSum) % colors.length;
-                
-                return {
-                    icon: icon,
-                    color: colors[colorIndex]
-                };
-            }
-
-            // ============= TIL FUNKSIYASI =============
             function setLanguage(lang) {
                 currentLang = lang;
                 
@@ -853,7 +866,6 @@
                 if (lang === 'ru') langRu.classList.add('active');
                 if (lang === 'en') langEn.classList.add('active');
 
-                // Matnlarni yangilash
                 document.querySelector('.stat-card .stat-label').textContent = translations[lang].total_apps;
                 document.querySelectorAll('.stat-card .stat-label')[1].textContent = translations[lang].tashkent_time;
                 searchInput.placeholder = translations[lang].search;
@@ -874,7 +886,9 @@
             langRu.addEventListener('click', () => setLanguage('ru'));
             langEn.addEventListener('click', () => setLanguage('en'));
 
-            // ============= VAQT =============
+            // ===========================================
+            // VAQT (O'ZGARTIRMANG)
+            // ===========================================
             function updateUzbekTime() {
                 const now = new Date();
                 const uzbekTime = new Date(now.getTime() + (5 * 60 * 60 * 1000));
@@ -892,7 +906,9 @@
             updateUzbekTime();
             setInterval(updateUzbekTime, 1000);
 
-            // ============= APPLARNI KO'RSATISH =============
+            // ===========================================
+            // APPLARNI KO'RSATISH (O'ZGARTIRMANG)
+            // ===========================================
             function renderApps() {
                 const searchTerm = searchInput.value.toLowerCase();
                 let filteredApps = apps;
@@ -928,8 +944,7 @@
                         education: translations[currentLang].education
                     };
                     
-                    // App nomiga qarab icon va rang tanlash
-                    const { icon, color } = getAppIconAndColor(app.name, app.category, app.icon);
+                    const { icon, color } = getAppIconAndColor(app.name, app.category);
 
                     return `
                         <div class="app-card" onclick="window.showAppDetail(${app.id})">
@@ -955,21 +970,9 @@
                 totalAppsEl.textContent = apps.length;
             }
 
-            // Rangni ochroq yoki to'qroq qilish uchun yordamchi funksiya
-            function adjustColor(hex, percent) {
-                // Hex rangni RGB ga o'tkazish va sozlash
-                let R = parseInt(hex.substring(1,3), 16);
-                let G = parseInt(hex.substring(3,5), 16);
-                let B = parseInt(hex.substring(5,7), 16);
-                
-                R = Math.min(255, Math.max(0, R + percent));
-                G = Math.min(255, Math.max(0, G + percent));
-                B = Math.min(255, Math.max(0, B + percent));
-                
-                return `#${((1 << 24) + (R << 16) + (G << 8) + B).toString(16).slice(1)}`;
-            }
-
-            // ============= GLOBAL FUNKSIYALAR =============
+            // ===========================================
+            // GLOBAL FUNKSIYALAR (O'ZGARTIRMANG)
+            // ===========================================
             window.toggleFavorite = function(appId) {
                 const index = favorites.indexOf(appId);
                 if (index === -1) {
@@ -1002,7 +1005,7 @@
                     education: translations[currentLang].education
                 };
                 
-                const { icon, color } = getAppIconAndColor(app.name, app.category, app.icon);
+                const { icon, color } = getAppIconAndColor(app.name, app.category);
 
                 document.getElementById('appDetailContent').innerHTML = `
                     <div class="app-detail-image" style="background: linear-gradient(135deg, ${color}, ${adjustColor(color, -20)});">
@@ -1028,7 +1031,9 @@
                 detailModal.classList.add('active');
             };
 
-            // ============= EVENT LISTENERLAR =============
+            // ===========================================
+            // EVENT LISTENERLAR (O'ZGARTIRMANG)
+            // ===========================================
             themeToggle.addEventListener('click', () => {
                 document.body.classList.toggle('dark');
                 const icon = themeToggle.querySelector('i');
@@ -1059,7 +1064,9 @@
                 }
             });
 
-            // ============= ISHGA TUSHIRISH =============
+            // ===========================================
+            // ISHGA TUSHIRISH (O'ZGARTIRMANG)
+            // ===========================================
             renderApps();
             setLanguage('uz');
 
@@ -1068,4 +1075,4 @@
         })();
     </script>
 </body>
-</html>****
+</html>
