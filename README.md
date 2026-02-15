@@ -4,61 +4,42 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>WebAppMarket</title>
-    <!-- Telegram Web App SDK -->
+    
+    <!-- Telegram Web App SDK - Telegram bilan ishlash uchun -->
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
-    <!-- Font Awesome Icons -->
+    
+    <!-- Font Awesome Icons - chiroyli ikonkalar uchun -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- GitHub Pages uchun base URL -->
+    
+    <!-- GitHub Pages uchun base URL - sayt manzili -->
     <base href="/">
+    
     <style>
-        /* MUHIM: DOCTYPE ni yashirish */
-        html {
+        /* ============= GLOBAL STILLAR ============= */
+        /* Barcha elementlar uchun asosiy stillar */
+        * {
             margin: 0;
             padding: 0;
-            overflow-x: hidden;
-            height: 100%;
-        }
-        
-        body {
-            margin: 0;
-            padding: 0;
-            min-height: 100vh;
-            position: relative;
-            top: -2px; /* DOCTYPE ni tepaga chiqarib yashiradi */
-            background-color: var(--bg-color);
-            color: var(--text-primary);
+            box-sizing: border-box;
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-            transition: background-color 0.3s, color 0.3s;
-            scroll-behavior: smooth;
-            overflow-x: hidden;
         }
 
-        /* Asosiy container - DOCTYPE yashirilganini kompensatsiya qilish */
-        .container {
-            max-width: 600px;
-            margin: 0 auto;
-            padding: 18px 16px 30px 16px; /* Yuqori padding ni biroz oshirish */
-            width: 100%;
-            position: relative;
-            z-index: 10;
-            background-color: var(--bg-color);
-            min-height: calc(100vh - 20px);
-        }
-
+        /* Ranglar sxemasi (light mode) - asosiy ranglar */
         :root {
-            --bg-color: #f8f9fa;
-            --card-bg: #ffffff;
-            --text-primary: #1a1a1a;
-            --text-secondary: #666666;
-            --accent-color: #0088cc;
-            --accent-hover: #0077b3;
-            --border-color: #eaeaea;
-            --shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
-            --weather-sun: #ffd700;
-            --error-color: #dc3545;
-            --success-color: #28a745;
+            --bg-color: #f8f9fa;           /* Fon rangi */
+            --card-bg: #ffffff;              /* Kartochka foni */
+            --text-primary: #1a1a1a;         /* Asosiy matn rangi */
+            --text-secondary: #666666;        /* Ikkilamchi matn rangi */
+            --accent-color: #0088cc;          /* Telegram rangi - accent */
+            --accent-hover: #0077b3;           /* Hover holatidagi rang */
+            --border-color: #eaeaea;           /* Chegara rangi */
+            --shadow: 0 2px 8px rgba(0, 0, 0, 0.05);  /* Soya */
+            --weather-sun: #ffd700;            /* Quyosh rangi */
+            --error-color: #dc3545;             /* Xatolik rangi */
+            --success-color: #28a745;           /* Muvaffaqiyat rangi */
         }
 
+        /* Dark mode ranglari - Telegram dark mode ga mos */
         body.dark {
             --bg-color: #1a1a1a;
             --card-bg: #2d2d2d;
@@ -69,7 +50,32 @@
             --weather-sun: #ffaa00;
         }
 
-        /* Qolgan CSS kodlari (avvalgidek) */
+        /* Body stillari */
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-primary);
+            min-height: 100vh;
+            transition: background-color 0.3s, color 0.3s;
+            scroll-behavior: smooth;
+            margin: 0;
+            padding: 0;
+            position: relative;
+            top: -2px; /* DOCTYPE ni yashirish uchun body ni 2px tepaga */
+        }
+
+        /* Asosiy container - barcha elementlarni o'rab turadi */
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 18px 16px 30px 16px;
+            width: 100%;
+            position: relative;
+            z-index: 10;
+            background-color: var(--bg-color);
+            min-height: calc(100vh - 20px);
+        }
+
+        /* ============= HEADER ============= */
         .header {
             display: flex;
             align-items: center;
@@ -79,6 +85,7 @@
             border-bottom: 1px solid var(--border-color);
         }
 
+        /* Dark mode tugmasi */
         .theme-toggle {
             background: var(--card-bg);
             border: 1px solid var(--border-color);
@@ -98,6 +105,8 @@
             transform: scale(1.05);
         }
 
+        /* ============= STATISTIKA KARTOCHKALARI ============= */
+        /* 3 ta kartochka: Jami applar, Vaqt, Ob-havo */
         .stats-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
@@ -105,6 +114,7 @@
             margin-bottom: 24px;
         }
 
+        /* Har bir kartochka uchun umumiy stillar */
         .stat-card {
             background: var(--card-bg);
             border-radius: 12px;
@@ -139,6 +149,7 @@
             margin-top: 4px;
         }
 
+        /* Vaqt uchun maxsus stillar */
         .time-value {
             font-size: 18px;
             font-weight: 700;
@@ -151,6 +162,7 @@
             margin-top: 2px;
         }
 
+        /* ============= OB-HAVO KARTOCHKASI ============= */
         .weather-container {
             display: flex;
             flex-direction: column;
@@ -159,6 +171,7 @@
             width: 100%;
         }
 
+        /* Quyosh animatsiyasi */
         .sun-animation {
             position: relative;
             width: 40px;
@@ -166,6 +179,7 @@
             margin: 0 auto 5px;
         }
 
+        /* Quyoshning o'zi */
         .sun {
             position: absolute;
             top: 50%;
@@ -179,6 +193,7 @@
             animation: pulse 2s infinite ease-in-out;
         }
 
+        /* Quyosh nurlari */
         .sun-ray {
             position: absolute;
             top: 50%;
@@ -198,29 +213,28 @@
             opacity: 0.3;
         }
 
+        /* Quyosh animatsiyasi - pulsatsiya */
         @keyframes pulse {
             0%, 100% { transform: translate(-50%, -50%) scale(1); box-shadow: 0 0 20px var(--weather-sun); }
             50% { transform: translate(-50%, -50%) scale(1.1); box-shadow: 0 0 30px var(--weather-sun); }
         }
 
+        /* Quyosh nurlari aylanishi */
         @keyframes rotate {
             from { transform: translate(-50%, -50%) rotate(0deg); }
             to { transform: translate(-50%, -50%) rotate(360deg); }
         }
 
+        /* Ob-havo ma'lumotlari */
         .weather-temp {
             font-size: 16px;
             font-weight: 700;
             color: var(--text-primary);
         }
 
+        /* Viloyat nomi - yashirin! Faqat ob-havo ko'rinadi */
         .weather-city {
-            font-size: 12px;
-            color: var(--text-secondary);
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            max-width: 100px;
+            display: none; /* Viloyat nomini yashiramiz */
         }
 
         .weather-desc {
@@ -236,6 +250,7 @@
             margin-top: 4px;
         }
 
+        /* Joylashuv tugmasi */
         .location-btn {
             background: var(--accent-color);
             color: white;
@@ -265,6 +280,7 @@
             color: white;
         }
 
+        /* ============= QIDIRUV ============= */
         .search-section {
             margin-bottom: 20px;
         }
@@ -299,6 +315,7 @@
             color: var(--text-secondary);
         }
 
+        /* ============= KATEGORIYALAR ============= */
         .categories {
             display: flex;
             gap: 10px;
@@ -330,6 +347,7 @@
             border-color: var(--accent-color);
         }
 
+        /* ============= APPLAR ============= */
         .section-title {
             display: flex;
             align-items: center;
@@ -342,6 +360,7 @@
             font-weight: 600;
         }
 
+        /* Applar grid - 2 ustun */
         .apps-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
@@ -349,6 +368,7 @@
             margin-bottom: 30px;
         }
 
+        /* App kartochkasi */
         .app-card {
             background: var(--card-bg);
             border-radius: 16px;
@@ -364,6 +384,7 @@
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
         }
 
+        /* App rasmi */
         .app-image {
             width: 100%;
             height: 120px;
@@ -386,6 +407,7 @@
             transform: scale(1.05);
         }
 
+        /* Rasm yuklanmaganda ko'rsatiladigan ikonka */
         .app-image .icon-overlay {
             position: absolute;
             top: 0;
@@ -402,6 +424,7 @@
             pointer-events: none;
         }
 
+        /* App kategoriya belgisi */
         .app-badge {
             position: absolute;
             top: 8px;
@@ -415,6 +438,7 @@
             z-index: 2;
         }
 
+        /* App ma'lumotlari */
         .app-info {
             padding: 12px;
         }
@@ -437,6 +461,7 @@
             line-height: 1.4;
         }
 
+        /* App sharhi */
         .app-review {
             font-size: 11px;
             color: var(--text-secondary);
@@ -448,6 +473,7 @@
             font-style: italic;
         }
 
+        /* App meta ma'lumotlari */
         .app-meta {
             display: flex;
             align-items: center;
@@ -461,6 +487,7 @@
             font-size: 10px;
         }
 
+        /* Sevimlilar tugmasi */
         .favorite-btn {
             cursor: pointer;
             transition: transform 0.2s;
@@ -470,6 +497,7 @@
             transform: scale(1.1);
         }
 
+        /* ============= YUQORIGA CHIQISH TUGMASI ============= */
         .scroll-top-btn {
             position: fixed;
             bottom: 30px;
@@ -495,6 +523,7 @@
             background: var(--accent-hover);
         }
 
+        /* ============= MODAL OYNA ============= */
         .modal {
             display: none;
             position: fixed;
@@ -523,6 +552,7 @@
             overflow-y: auto;
         }
 
+        /* App detal ma'lumotlari */
         .app-detail {
             text-align: center;
         }
@@ -582,6 +612,7 @@
             text-align: left;
         }
 
+        /* Tugmalar */
         .open-bot-btn {
             background: #28a745;
             color: white;
@@ -615,6 +646,7 @@
             gap: 8px;
         }
 
+        /* Yuklanayotgan animatsiya */
         .loading {
             display: inline-block;
             width: 16px;
@@ -629,33 +661,38 @@
             to { transform: rotate(360deg); }
         }
 
-        /* Telefonlarda scroll ni yaxshilash */
+        /* Telefonlar uchun moslashuv */
         @media (max-width: 600px) {
             .container {
                 padding-top: 20px;
             }
             
             body {
-                top: -1px; /* DOCTYPE ni to'liq yashirish */
+                top: -1px;
             }
         }
     </style>
 </head>
 <body>
+    <!-- Asosiy container - barcha elementlar shu yerda -->
     <div class="container">
+        <!-- Header - dark mode tugmasi bilan -->
         <div class="header">
             <div class="theme-toggle" id="themeToggle">
                 <i class="fas fa-moon"></i>
             </div>
         </div>
 
+        <!-- Statistika kartochkalari (3 ta) -->
         <div class="stats-grid">
+            <!-- 1-kartochka: Jami applar soni -->
             <div class="stat-card">
                 <i class="fas fa-rocket"></i>
                 <div class="stat-value" id="totalApps">0</div>
                 <div class="stat-label">Jami applar</div>
             </div>
             
+            <!-- 2-kartochka: O'zbekiston vaqti -->
             <div class="stat-card">
                 <i class="fas fa-clock"></i>
                 <div class="time-value" id="currentTime">00:00</div>
@@ -663,17 +700,24 @@
                 <div class="stat-label">Toshkent vaqti</div>
             </div>
             
+            <!-- 3-kartochka: Ob-havo (viloyat nomi ko'rinmaydi) -->
             <div class="stat-card">
                 <div class="weather-container">
+                    <!-- Quyosh animatsiyasi -->
                     <div class="sun-animation">
                         <div class="sun"></div>
                         <div class="sun-ray"></div>
                         <div class="sun-ray"></div>
                     </div>
+                    <!-- Harorat -->
                     <div class="weather-temp" id="weatherTemp">--°C</div>
+                    <!-- Viloyat nomi (yashirin) -->
                     <div class="weather-city" id="weatherCity">--</div>
+                    <!-- Ob-havo tavsifi -->
                     <div class="weather-desc" id="weatherDesc"></div>
+                    <!-- Xatolik xabari -->
                     <div class="weather-error" id="weatherError" style="display: none;"></div>
+                    <!-- Joylashuv tugmasi -->
                     <button class="location-btn" id="requestLocationBtn">
                         <i class="fas fa-map-marker-alt"></i>
                         <span id="locationBtnText">Joylashuvga ruxsat berish</span>
@@ -682,6 +726,7 @@
             </div>
         </div>
 
+        <!-- Qidiruv bo'limi -->
         <div class="search-section">
             <div class="search-box">
                 <i class="fas fa-search"></i>
@@ -689,6 +734,7 @@
             </div>
         </div>
 
+        <!-- Kategoriya tugmalari -->
         <div class="categories" id="categories">
             <button class="category-btn active" data-category="all">Barchasi</button>
             <button class="category-btn" data-category="game">O'yinlar</button>
@@ -697,34 +743,62 @@
             <button class="category-btn" data-category="education">Ta'lim</button>
         </div>
 
+        <!-- Barcha applar bo'limi -->
         <div class="section-title">
             <h2>Barcha applar</h2>
         </div>
 
+        <!-- Applar grid - bu yerga JavaScript orqali applar chiqariladi -->
         <div class="apps-grid" id="appsGrid"></div>
     </div>
 
+    <!-- Yuqoriga chiqish tugmasi (pastki o'ng burchak) -->
     <div class="scroll-top-btn" id="scrollTopBtn">
         <i class="fas fa-arrow-up"></i>
     </div>
 
+    <!-- App detal ma'lumotlari modal oynasi -->
     <div class="modal" id="detailModal">
         <div class="modal-content app-detail" id="appDetailContent"></div>
     </div>
 
+    <!-- ============= JAVASCRIPT KODLARI ============= -->
     <script>
         (function() {
-            // Telegram Web App init
+            // ============= TELEGRAM WEB APP SOZLAMALARI =============
+            // Telegram Web App obyektini olish
             const tg = window.Telegram.WebApp;
+            // Web appni to'liq ekran qilish
             tg.expand();
+            // Web app tayyorligini bildirish
             tg.ready();
 
-            // Dark mode
+            // Telegram dark mode ni aniqlash
             if (tg.colorScheme === 'dark') {
                 document.body.classList.add('dark');
             }
 
-            // Apps data
+            // ============= O'ZBEKISTON VILOYATLARI MA'LUMOTLARI =============
+            // 12 ta viloyat + Toshkent shahar
+            // Har bir viloyat uchun: markazi koordinatalari, harorat, ob-havo
+            const UZBEKISTAN_REGIONS = [
+                { name: 'Toshkent',      lat: 41.3,  lon: 69.2,  temp: 23, desc: 'Quyoshli' },
+                { name: 'Samarqand',     lat: 39.7,  lon: 66.9,  temp: 22, desc: 'Och havo' },
+                { name: 'Buxoro',        lat: 39.8,  lon: 64.4,  temp: 26, desc: 'Quruq issiq' },
+                { name: 'Xorazm',        lat: 41.4,  lon: 60.4,  temp: 27, desc: 'Issiq' },
+                { name: 'Navoiy',        lat: 40.1,  lon: 65.4,  temp: 25, desc: 'Quruq' },
+                { name: 'Qashqadaryo',    lat: 38.9,  lon: 65.8,  temp: 26, desc: 'Issiq' },
+                { name: 'Surxondaryo',    lat: 37.2,  lon: 67.3,  temp: 28, desc: 'Juda issiq' },
+                { name: 'Jizzax',        lat: 40.1,  lon: 67.8,  temp: 24, desc: 'Quyoshli' },
+                { name: 'Sirdaryo',      lat: 40.8,  lon: 68.7,  temp: 24, desc: 'Och havo' },
+                { name: 'Farg\'ona',      lat: 40.4,  lon: 71.8,  temp: 25, desc: 'Issiq' },
+                { name: 'Namangan',      lat: 41.0,  lon: 71.7,  temp: 24, desc: 'Quyoshli' },
+                { name: 'Andijon',       lat: 40.8,  lon: 72.3,  temp: 26, desc: 'Issiq' },
+                { name: 'Qoraqalpog\'iston', lat: 42.5, lon: 59.6, temp: 26, desc: 'Quruq issiq' }
+            ];
+
+            // ============= APPLAR RO'YXATI =============
+            // Yangi app qo'shish uchun shu yerga qo'shing
             const apps = [
                 {
                     id: 1,
@@ -758,19 +832,23 @@
                 },
                 {
                     id: 4,
-                    name: 'Math Quiz',
+                    name: 'TestGO',
                     category: 'education',
                     description: 'Matematik testlar, misollar va mantiqiy masalalar.',
                     review: '🧮 Matematikani o\'rganish uchun zo\'r bot! Bolalar uchun juda foydali.',
-                    botUsername: '@mathquizbot',
-                    url: 'https://t.me/mathquizbot/quiz',
+                    botUsername: '@Quiz00_01_bot',
+                    url: 'https://shodiyor986.github.io/TestGo/',
                     icon: 'fa-calculator'
                 }
             ];
 
+            // Sevimlilar ro'yxati (localStorage dan o'qiladi)
             let favorites = JSON.parse(localStorage.getItem('favorites')) || [];
+            
+            // Joriy kategoriya (barchasi)
             let currentCategory = 'all';
 
+            // ============= DOM ELEMENTLARNI OLISH =============
             const appsGrid = document.getElementById('appsGrid');
             const searchInput = document.getElementById('searchInput');
             const totalAppsEl = document.getElementById('totalApps');
@@ -780,6 +858,8 @@
             const scrollTopBtn = document.getElementById('scrollTopBtn');
             const detailModal = document.getElementById('detailModal');
             const categoryBtns = document.querySelectorAll('.category-btn');
+            
+            // Ob-havo elementlari
             const weatherTemp = document.getElementById('weatherTemp');
             const weatherCity = document.getElementById('weatherCity');
             const weatherDesc = document.getElementById('weatherDesc');
@@ -787,88 +867,129 @@
             const requestLocationBtn = document.getElementById('requestLocationBtn');
             const locationBtnText = document.getElementById('locationBtnText');
 
-            const WEATHER_API_KEY = 'demo_key';
+            // ============= OB-HAVO FUNKSIYALARI =============
+            
+            /**
+             * Joylashuv bo'yicha eng yaqin viloyatni topish
+             * @param {number} lat - Kenglik
+             * @param {number} lon - Uzunlik
+             * @returns {object} - Eng yaqin viloyat ma'lumotlari
+             */
+            function findNearestRegion(lat, lon) {
+                let nearestRegion = UZBEKISTAN_REGIONS[0];
+                let minDistance = Infinity;
+                
+                // Barcha viloyatlarni tekshirish
+                UZBEKISTAN_REGIONS.forEach(region => {
+                    // Masofani hisoblash (taxminiy)
+                    const distance = Math.sqrt(
+                        Math.pow(lat - region.lat, 2) + 
+                        Math.pow(lon - region.lon, 2)
+                    );
+                    
+                    // Eng yaqin viloyatni topish
+                    if (distance < minDistance) {
+                        minDistance = distance;
+                        nearestRegion = region;
+                    }
+                });
+                
+                return nearestRegion;
+            }
 
+            /**
+             * Yuklanayotgan holatni ko'rsatish
+             */
             function showWeatherLoading() {
                 weatherTemp.textContent = '--°C';
-                weatherCity.textContent = 'Aniqlanmoqda...';
-                weatherDesc.textContent = '';
+                weatherDesc.textContent = 'Aniqlanmoqda...';
                 weatherError.style.display = 'none';
                 locationBtnText.innerHTML = '<span class="loading"></span> Yuklanmoqda...';
             }
 
+            /**
+             * Yuklash tugaganini ko'rsatish
+             */
             function hideWeatherLoading() {
                 locationBtnText.textContent = 'Joylashuvga ruxsat berish';
             }
 
+            /**
+             * Xatolik xabarini ko'rsatish
+             * @param {string} message - Xatolik matni
+             */
             function showWeatherError(message) {
                 weatherError.textContent = message;
                 weatherError.style.display = 'block';
                 weatherTemp.textContent = '--°C';
-                weatherCity.textContent = '--';
                 weatherDesc.textContent = '';
                 hideWeatherLoading();
             }
 
+            /**
+             * Koordinatalar bo'yicha ob-havoni olish
+             * @param {number} lat - Kenglik
+             * @param {number} lon - Uzunlik
+             */
             function getWeatherByCoords(lat, lon) {
                 showWeatherLoading();
                 
+                // Joylashuv bo'yicha eng yaqin viloyatni topish
+                const region = findNearestRegion(lat, lon);
+                
+                // Viloyat nomini yashiramiz (ko'rsatilmaydi)
+                weatherCity.textContent = region.name; // Bu yashirin
+                
+                // Bir oz kutish (real API ga o'xshab)
                 setTimeout(() => {
-                    const cities = {
-                        '41.3': { name: 'Toshkent', temp: 23, desc: 'Quyoshli' },
-                        '39.7': { name: 'Samarqand', temp: 22, desc: 'Och havo' },
-                        '41.7': { name: 'Farg\'ona', temp: 24, desc: 'Quyoshli' },
-                        '40.8': { name: 'Andijon', temp: 25, desc: 'Issiq' },
-                        '40.4': { name: 'Buxoro', temp: 26, desc: 'Quruq' },
-                        '41.6': { name: 'Namangan', temp: 23, desc: 'Och havo' },
-                        '40.1': { name: 'Qarshi', temp: 27, desc: 'Issiq' },
-                        '41.4': { name: 'Jizzax', temp: 24, desc: 'Quyoshli' }
-                    };
-                    
-                    let cityName = 'Toshkent';
-                    let temp = 23;
-                    let desc = 'Quyoshli';
-                    
-                    for (let key in cities) {
-                        if (Math.abs(lat - parseFloat(key)) < 0.5) {
-                            cityName = cities[key].name;
-                            temp = cities[key].temp;
-                            desc = cities[key].desc;
-                            break;
-                        }
-                    }
-                    
-                    weatherTemp.textContent = temp + '°C';
-                    weatherCity.textContent = cityName;
-                    weatherDesc.textContent = desc;
+                    // Viloyatga mos ob-havo ma'lumotlarini ko'rsatish
+                    weatherTemp.textContent = region.temp + '°C';
+                    weatherDesc.textContent = region.desc;
                     weatherError.style.display = 'none';
+                    
+                    // Tugma matnini o'zgartirish
                     locationBtnText.textContent = '✅ Joylashuv aniqlandi';
                     
+                    // 2 soniyadan keyin tugma matnini qaytarish
                     setTimeout(() => {
                         locationBtnText.textContent = 'Joylashuvni yangilash';
                     }, 2000);
                     
+                    // Telegram haptic feedback
                     tg.HapticFeedback.notificationOccurred('success');
-                }, 1500);
+                }, 1000);
             }
 
+            /**
+             * Joylashuvga ruxsat so'rash
+             */
             function requestLocation() {
                 showWeatherLoading();
                 
+                // Geolokatsiya mavjudligini tekshirish
                 if (!navigator.geolocation) {
                     showWeatherError('Brauzer joylashuvni qo\'llab-quvvatlamaydi');
                     return;
                 }
 
+                // Joylashuv so'rash
                 navigator.geolocation.getCurrentPosition(
+                    // Muvaffaqiyatli bo'lsa
                     function(position) {
                         const lat = position.coords.latitude;
                         const lon = position.coords.longitude;
+                        
+                        // Ob-havoni olish
                         getWeatherByCoords(lat, lon);
+                        
+                        // Telegram haptic feedback
                         tg.HapticFeedback.impactOccurred('medium');
                     },
+                    // Xatolik bo'lsa
                     function(error) {
                         let errorMessage = '';
+                        
+                        // Xatolik turlari
                         switch(error.code) {
                             case error.PERMISSION_DENIED:
                                 errorMessage = '❌ Joylashuvga ruxsat berilmadi';
@@ -883,46 +1004,71 @@
                             default:
                                 errorMessage = '❌ Noma\'lum xatolik';
                         }
+                        
                         showWeatherError(errorMessage);
                         tg.HapticFeedback.notificationOccurred('error');
                     },
+                    // Sozlamalar
                     {
-                        enableHighAccuracy: true,
-                        timeout: 10000,
-                        maximumAge: 0
+                        enableHighAccuracy: true,    // Yuqori aniqlik
+                        timeout: 10000,               // 10 soniya kutish
+                        maximumAge: 0                  // Har doim yangi ma'lumot
                     }
                 );
             }
 
+            // ============= VAQT FUNKSIYASI =============
+            /**
+             * O'zbekiston vaqtini yangilash
+             */
             function updateUzbekTime() {
                 const now = new Date();
+                
+                // O'zbekiston vaqti (UTC+5)
                 const uzbekTime = new Date(now.getTime() + (5 * 60 * 60 * 1000));
                 
+                // Soat: daqiqa (00:00 format)
                 const hours = uzbekTime.getUTCHours().toString().padStart(2, '0');
                 const minutes = uzbekTime.getUTCMinutes().toString().padStart(2, '0');
                 currentTimeEl.textContent = `${hours}:${minutes}`;
                 
+                // Sana: kun.oy.yil (01.01.2026 format)
                 const day = uzbekTime.getUTCDate().toString().padStart(2, '0');
                 const month = (uzbekTime.getUTCMonth() + 1).toString().padStart(2, '0');
                 const year = uzbekTime.getUTCFullYear();
                 currentDateEl.textContent = `${day}.${month}.${year}`;
             }
 
+            // Vaqtni birinchi marta yangilash
             updateUzbekTime();
+            
+            // Har soniyada vaqtni yangilash
             setInterval(updateUzbekTime, 1000);
 
+            // ============= BOT RASMINI YUKLASH =============
+            /**
+             * Bot username asosida rasm yuklash
+             * @param {HTMLElement} imgElement - Rasm elementi
+             * @param {string} botUsername - Bot username (masalan: @mybot)
+             */
             function loadBotImage(imgElement, botUsername) {
+                // @ belgisini olib tashlash
                 const cleanUsername = botUsername.replace('@', '');
+                
+                // UI Avatars orqali rasm yaratish
                 const imageUrl = `https://ui-avatars.com/api/?name=${cleanUsername}&background=0088cc&color=fff&size=128&bold=true&format=png`;
                 
+                // Rasm manzilini o'rnatish
                 imgElement.src = imageUrl;
                 
+                // Rasm yuklanganda
                 imgElement.onload = function() {
                     imgElement.classList.remove('error');
                     const overlay = imgElement.nextElementSibling;
                     if (overlay) overlay.style.display = 'none';
                 };
                 
+                // Rasm yuklanmasa
                 imgElement.onerror = function() {
                     imgElement.classList.add('error');
                     const overlay = imgElement.nextElementSibling;
@@ -930,14 +1076,21 @@
                 };
             }
 
+            // ============= APPLARNI KO'RSATISH =============
+            /**
+             * Applarni filterlab ko'rsatish
+             */
             function renderApps() {
+                // Qidiruv so'zini olish
                 const searchTerm = searchInput.value.toLowerCase();
                 let filteredApps = apps;
 
+                // Kategoriya bo'yicha filterlash
                 if (currentCategory !== 'all') {
                     filteredApps = filteredApps.filter(app => app.category === currentCategory);
                 }
 
+                // Qidiruv bo'yicha filterlash
                 if (searchTerm) {
                     filteredApps = filteredApps.filter(app => 
                         app.name.toLowerCase().includes(searchTerm) || 
@@ -946,6 +1099,7 @@
                     );
                 }
 
+                // Agar app topilmasa
                 if (filteredApps.length === 0) {
                     appsGrid.innerHTML = `
                         <div style="grid-column: 1/-1; text-align: center; padding: 40px; color: var(--text-secondary);">
@@ -957,6 +1111,7 @@
                     return;
                 }
 
+                // Applarni HTML ko'rinishida chiqarish
                 appsGrid.innerHTML = filteredApps.map(app => {
                     const isFavorite = favorites.includes(app.id);
                     const categoryNames = {
@@ -993,6 +1148,7 @@
                     `;
                 }).join('');
 
+                // Har bir app uchun rasm yuklash
                 filteredApps.forEach(app => {
                     const imgElement = document.getElementById(`app-image-${app.id}`);
                     if (imgElement) {
@@ -1000,21 +1156,33 @@
                     }
                 });
 
+                // Jami applarni yangilash
                 totalAppsEl.textContent = apps.length;
             }
 
+            // ============= GLOBAL FUNKSIYALAR =============
+            // Bu funksiyalar window orqali chaqiriladi (onclick attributlardan)
+            
+            /**
+             * Sevimlilarga qo'shish yoki olib tashlash
+             * @param {number} appId - App ID si
+             */
             window.toggleFavorite = function(appId) {
                 const index = favorites.indexOf(appId);
                 if (index === -1) {
-                    favorites.push(appId);
+                    favorites.push(appId); // Sevimlilarga qo'shish
                 } else {
-                    favorites.splice(index, 1);
+                    favorites.splice(index, 1); // Sevimlilardan olib tashlash
                 }
                 localStorage.setItem('favorites', JSON.stringify(favorites));
-                renderApps();
+                renderApps(); // Applarni qayta ko'rsatish
                 tg.HapticFeedback.impactOccurred('light');
             };
 
+            /**
+             * Botni ochish
+             * @param {string} botUsername - Bot username
+             */
             window.openBot = function(botUsername) {
                 let username = botUsername;
                 if (!username.startsWith('@')) {
@@ -1024,11 +1192,19 @@
                 tg.HapticFeedback.impactOccurred('medium');
             };
 
+            /**
+             * Web appni ochish
+             * @param {string} url - Web app manzili
+             */
             window.openWebApp = function(url) {
                 tg.openTelegramLink(url);
                 tg.HapticFeedback.impactOccurred('medium');
             };
 
+            /**
+             * App detal ma'lumotlarini ko'rsatish
+             * @param {number} appId - App ID si
+             */
             window.showAppDetail = function(appId) {
                 const app = apps.find(a => a.id === appId);
                 if (!app) return;
@@ -1042,6 +1218,7 @@
 
                 const detailImageId = `detail-image-${app.id}`;
 
+                // Detal HTML ni yaratish
                 document.getElementById('appDetailContent').innerHTML = `
                     <div class="app-detail-image">
                         <img id="${detailImageId}" src="" alt="${app.name}" style="width: 100%; height: 100%; object-fit: cover; display: none;">
@@ -1070,6 +1247,7 @@
                     </button>
                 `;
 
+                // Detal rasmni yuklash
                 const detailImg = document.getElementById(detailImageId);
                 const detailIcon = document.getElementById(`detail-icon-${app.id}`);
                 
@@ -1088,11 +1266,16 @@
                     };
                 }
 
+                // Modalni ko'rsatish
                 detailModal.classList.add('active');
             };
 
+            // ============= EVENT LISTENERLAR =============
+            
+            // Joylashuv tugmasi bosilganda
             requestLocationBtn.addEventListener('click', requestLocation);
 
+            // Dark mode tugmasi bosilganda
             themeToggle.addEventListener('click', () => {
                 document.body.classList.toggle('dark');
                 const icon = themeToggle.querySelector('i');
@@ -1104,6 +1287,7 @@
                 tg.HapticFeedback.impactOccurred('light');
             });
 
+            // Yuqoriga chiqish tugmasi bosilganda
             scrollTopBtn.addEventListener('click', () => {
                 window.scrollTo({
                     top: 0,
@@ -1112,6 +1296,7 @@
                 tg.HapticFeedback.impactOccurred('light');
             });
 
+            // Kategoriya tugmalari bosilganda
             categoryBtns.forEach(btn => {
                 btn.addEventListener('click', () => {
                     categoryBtns.forEach(b => b.classList.remove('active'));
@@ -1122,23 +1307,29 @@
                 });
             });
 
+            // Qidiruv o'zgarganda
             searchInput.addEventListener('input', () => {
                 renderApps();
             });
 
+            // Modalni tashqariga bosilganda yopish
             window.addEventListener('click', (e) => {
                 if (e.target === detailModal) {
                     detailModal.classList.remove('active');
                 }
             });
 
+            // ============= ISHGA TUSHIRISH =============
+            // Applarni ko'rsatish
             renderApps();
 
+            // Telegram MainButton sozlamalari
             tg.MainButton.setText('Yopish');
             tg.MainButton.onClick(() => {
                 tg.close();
             });
 
+            // 3 soniyadan keyin avtomatik joylashuv so'rash
             setTimeout(() => {
                 requestLocation();
             }, 3000);
