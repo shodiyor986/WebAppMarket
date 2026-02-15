@@ -1,4 +1,3 @@
-# WebAppMarket
 <!DOCTYPE html>
 <html>
 <head>
@@ -12,11 +11,38 @@
     <!-- GitHub Pages uchun base URL -->
     <base href="/">
     <style>
-        * {
+        /* MUHIM: DOCTYPE ni yashirish */
+        html {
             margin: 0;
             padding: 0;
-            box-sizing: border-box;
+            overflow-x: hidden;
+            height: 100%;
+        }
+        
+        body {
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            position: relative;
+            top: -2px; /* DOCTYPE ni tepaga chiqarib yashiradi */
+            background-color: var(--bg-color);
+            color: var(--text-primary);
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            transition: background-color 0.3s, color 0.3s;
+            scroll-behavior: smooth;
+            overflow-x: hidden;
+        }
+
+        /* Asosiy container - DOCTYPE yashirilganini kompensatsiya qilish */
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 18px 16px 30px 16px; /* Yuqori padding ni biroz oshirish */
+            width: 100%;
+            position: relative;
+            z-index: 10;
+            background-color: var(--bg-color);
+            min-height: calc(100vh - 20px);
         }
 
         :root {
@@ -43,22 +69,7 @@
             --weather-sun: #ffaa00;
         }
 
-        body {
-            background-color: var(--bg-color);
-            color: var(--text-primary);
-            min-height: 100vh;
-            transition: background-color 0.3s, color 0.3s;
-            scroll-behavior: smooth;
-        }
-
-        .container {
-            max-width: 600px;
-            margin: 0 auto;
-            padding: 16px;
-            padding-bottom: 30px;
-            width: 100%;
-        }
-
+        /* Qolgan CSS kodlari (avvalgidek) */
         .header {
             display: flex;
             align-items: center;
@@ -492,7 +503,7 @@
             right: 0;
             bottom: 0;
             background: rgba(0, 0, 0, 0.5);
-            z-index: 1000;
+            z-index: 2000;
             align-items: center;
             justify-content: center;
             padding: 16px;
@@ -616,6 +627,17 @@
 
         @keyframes spin {
             to { transform: rotate(360deg); }
+        }
+
+        /* Telefonlarda scroll ni yaxshilash */
+        @media (max-width: 600px) {
+            .container {
+                padding-top: 20px;
+            }
+            
+            body {
+                top: -1px; /* DOCTYPE ni to'liq yashirish */
+            }
         }
     </style>
 </head>
@@ -765,7 +787,7 @@
             const requestLocationBtn = document.getElementById('requestLocationBtn');
             const locationBtnText = document.getElementById('locationBtnText');
 
-            const WEATHER_API_KEY = 'demo_key'; // Test uchun
+            const WEATHER_API_KEY = 'demo_key';
 
             function showWeatherLoading() {
                 weatherTemp.textContent = '--°C';
