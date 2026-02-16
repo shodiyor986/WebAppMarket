@@ -635,11 +635,11 @@
             const apps = [
                 {
                     id: 1,
-                    name: 'Mini Game Bot',
+                    name: 'Block Crush!',
                     category: 'game',
                     description: 'Qiziqarli mini o\'yinlar to\'plami. Puzzle, arcade va strategiya o\'yinlari.',
                     review: '🎮 Ajoyib o\'yinlar! Eng zo\'r pazzillar to\'plami.',
-                    botUsername: 'mygamebot'
+                    botUsername: '@Block_Crosh_bot '
                 },
                 {
                     id: 2,
@@ -689,7 +689,7 @@
                     review: 'sport fetnis mashxulotlari.',
                     botUsername: '@SportFet_bot'
                 }
-
+                
                 // ===========================================
                 // 🔷 YANGI APP QO'SHISH UCHUN NAMUNA:
                 // ===========================================
