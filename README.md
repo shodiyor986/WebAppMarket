@@ -639,7 +639,7 @@
                     category: 'game',
                     description: 'Qiziqarli mini o\'yinlar to\'plami. Puzzle, arcade va strategiya o\'yinlari.',
                     review: '🎮 Ajoyib o\'yinlar! Eng zo\'r pazzillar to\'plami.',
-                    botUsername: '@Block_Crosh_bot '
+                    botUsername: 'Block_Crosh_bot '
                 },
                 {
                     id: 2,
