@@ -688,6 +688,14 @@
                     description: 'sport fetnis.',
                     review: 'sport fetnis mashxulotlari.',
                     botUsername: '@SportFet_bot'
+                },
+                {
+                    id: 8,
+                    name: 'sportfet',
+                    category: 'education',
+                    description: 'Qabul Bot.',
+                    review: 'Kasb Hunar Texnikumga Hujat Topshirish.',
+                    botUsername: '@tesreregt_bot'
                 }
                 
                 // ===========================================
