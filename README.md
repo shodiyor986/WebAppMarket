@@ -691,10 +691,10 @@
                 },
                 {
                     id: 8,
-                    name: 'sportfet',
+                    name: 'Qabul Bot',
                     category: 'education',
-                    description: 'Qabul Bot.',
-                    review: 'Kasb Hunar Texnikumga Hujat Topshirish.',
+                    description: 'Qabul bot.',
+                    review: 'Qashqa daryo viloyati Qarshi tuman Hilol Mfy Kasb hunat texnikumiga Hujat Topshirish',
                     botUsername: '@tesreregt_bot'
                 }
                 
